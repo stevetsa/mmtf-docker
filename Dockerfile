@@ -23,7 +23,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
 ###
     openjdk-8-jdk \
     git \
-#    curl \
+    curl \
 ###
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
