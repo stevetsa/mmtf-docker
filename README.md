@@ -36,10 +36,6 @@ sudo apt-get update
 sudo apt-get install -y docker.io
 
 docker run -it --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-notebook
-
-or
-
-docker run -it -d --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-notebook
 ```
 
 Point browser to http://localhost:8888/?token=abc........
