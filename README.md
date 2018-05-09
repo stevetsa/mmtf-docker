@@ -12,18 +12,19 @@ Part of the 2018 UCSD Structural Bioinformatics Hackathon - https://github.com/s
 From the host, [connect to an AWS instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
 ```
+### Replace ubuntu@ec2-00-00-000-00.compute-1.amazonaws.com with your AWS Public DNS
 ssh -i "/path/to/sshkey.pem" -L 8888:0.0.0.0:8888 ubuntu@ec2-00-00-000-00.compute-1.amazonaws.com
 ```
 
 From AWS (ubuntu) instance, install docker and run
 
 ```
-## install Docker if needed
+### install Docker if needed
 sudo apt-get update
 sudo apt-get install -y docker.io
 
 
-## run Docker image from a directory containing your Jupyter Notebook or clone it
+### run Docker image from a directory containing your Jupyter Notebook or clone it
 git clone https://github.com/sbl-sdsc/mmtf-workshop-2018.git
 docker run -it --rm -v `pwd`:`pwd` -w `pwd` -p 8888:8888 stevetsa/mmtf-docker
 
