@@ -45,6 +45,20 @@ docker run -it -d --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-notebook
 Point browser to http://localhost:8888/?token=abc........
 
 
+## Singularity Containers on the NIH Biowulf
+
+[Instructions](https://hpc.nih.gov/apps/jupyter.html)
+
+```
+module load tmux # You can use screen instead; you don't need to module load it
+tmux
+sinteractive
+### Note the node cn0000 in the command prompt
+cd /data/$USER
+jupyter notebook --port 1689 --no-browser
+ssh -L 1689:localhost:1689 biowulf "ssh -L 1689:localhost:1689 cn0000"
+```
+
 ## End of Addition
 
 
