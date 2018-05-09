@@ -1,23 +1,10 @@
-![docker pulls](https://img.shields.io/docker/pulls/jupyter/base-notebook.svg) ![docker stars](https://img.shields.io/docker/stars/jupyter/base-notebook.svg) [![](https://images.microbadger.com/badges/image/jupyter/base-notebook.svg)](https://microbadger.com/images/jupyter/base-notebook "jupyter/base-notebook image metadata")
+## What is MMTF?
 
-# Base Jupyter Notebook Stack
-
-Small base image for defining your own stack
-
-## What it Gives You
-
-* Minimally-functional Jupyter Notebook 5.2.x (e.g., no pandoc for document conversion)
-* Miniconda Python 3.x
-* No preinstalled scientific computing packages
-* Unprivileged user `jovyan` (uid=1000, configurable, see options) in group `users` (gid=100) with ownership over `/home/jovyan` and `/opt/conda`
-* [tini](https://github.com/krallin/tini) as the container entrypoint and [start-notebook.sh](./start-notebook.sh) as the default command
-* A [start-singleuser.sh](./start-singleuser.sh) script useful for running a single-user instance of the Notebook server, as required by JupyterHub
-* A [start.sh](./start.sh) script useful for running alternative commands in the container (e.g. `ipython`, `jupyter kernelgateway`, `jupyter lab`)
-* Options for a self-signed HTTPS certificate and passwordless `sudo`
-
+The Macromolecular Transmission Format (MMTF) is a new compact binary format to transmit and store biomolecular structures for fast 3D visualization and analysis.
 
 ## MMTF Addition
-This Docker image contains tools needed to run https://github.com/sbl-sdsc/mmtf-pyspark
+
+This Docker image contains tools needed to run [MMTF](https://github.com/sbl-sdsc/mmtf-pyspark)
 (Methods for the parallel and distributed analysis and mining of the Protein Data Bank using MMTF and Apache Spark.)
 
 Part of the 2018 UCSD Structural Bioinformatics Hackathon - https://github.com/sbl-sdsc/mmtf-workshop-2018
@@ -31,14 +18,20 @@ ssh -i "/path/to/sshkey.pem" -L 8888:0.0.0.0:8888 ubuntu@ec2-00-00-000-00.comput
 From AWS (ubuntu) instance, install docker and run
 
 ```
+## install Docker if needed
 sudo apt-get update
-
 sudo apt-get install -y docker.io
 
-docker run -it --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-notebook
+
+## run Docker image from a directory containing your Jupyter Notebook or clone it
+git clone https://github.com/sbl-sdsc/mmtf-workshop-2018.git
+docker run -it --rm -v `pwd`:`pwd` -w `pwd` -p 8888:8888 stevetsa/mmtf-docker
+
+## Open a read-only Jupyter notebook stored in the container
+## docker run -it --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-docker
 ```
 
-Point browser to http://localhost:8888/?token=abc........
+Point browser to http://localhost:8888/?token=abc........ (Last line of output from the previous command)
 
 
 ## Singularity Containers on the NIH Biowulf
@@ -56,6 +49,23 @@ ssh -L 1689:localhost:1689 biowulf "ssh -L 1689:localhost:1689 cn0000"
 ```
 
 ## End of Addition
+
+![docker pulls](https://img.shields.io/docker/pulls/jupyter/base-notebook.svg) ![docker stars](https://img.shields.io/docker/stars/jupyter/base-notebook.svg) [![](https:/$
+
+# Base Jupyter Notebook Stack
+
+Small base image for defining your own stack
+
+## What it Gives You
+
+* Minimally-functional Jupyter Notebook 5.2.x (e.g., no pandoc for document conversion)
+* Miniconda Python 3.x
+* No preinstalled scientific computing packages
+* Unprivileged user `jovyan` (uid=1000, configurable, see options) in group `users` (gid=100) with ownership over `/home/jovyan` and `/opt/conda`
+* [tini](https://github.com/krallin/tini) as the container entrypoint and [start-notebook.sh](./start-notebook.sh) as the default command
+* A [start-singleuser.sh](./start-singleuser.sh) script useful for running a single-user instance of the Notebook server, as required by JupyterHub
+* A [start.sh](./start.sh) script useful for running alternative commands in the container (e.g. `ipython`, `jupyter kernelgateway`, `jupyter lab`)
+* Options for a self-signed HTTPS certificate and passwordless `sudo`
 
 
 ## Basic Use
