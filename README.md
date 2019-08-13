@@ -14,19 +14,22 @@ Originally created as part of the 2018 UCSD Structural Bioinformatics Hackathon 
 [Methods for mapping genomic data onto 3D protein structure.](https://github.com/sbl-sdsc/mmtf-genomics)  
 [Methods for mapping proteomics data on 3D protein structure.](https://github.com/sbl-sdsc/mmtf-proteomics)  
 
+## Using the mmtf-docker Docker image
 
-## Run the mmtf-docker image
 ### Install Docker for your operating systems
 [Instructions](https://docs.docker.com/install/) provided by Docker.
 
-### run Docker image from a directory containing your Jupyter Notebook or clone it
+### Run Docker image from a directory containing your Jupyter Notebook
 ```
 git clone https://github.com/sbl-sdsc/mmtf-genomics.git
 docker run -it --rm -v `pwd`:/home/jovyan/work -p 8888:8888 stevetsa/mmtf-docker
 ```
 
-### Using AWS
-From the host, [connect to an AWS instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html).  
+### Run Docker image from AWS
+
+Alternatively, you can also run this Docker image from commercial cloud service providers.
+
+From a local machine, [connect to an AWS instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html).  
 
 ```
 ### Replace ubuntu@ec2-00-00-000-00.compute-1.amazonaws.com with your AWS Public DNS
@@ -41,21 +44,15 @@ sudo apt-get update
 sudo apt-get install -y docker.io
 
 
-### run Docker image from a directory containing your Jupyter Notebook or clone it
+### run Docker image from a directory containing your Jupyter Notebook
 git clone https://github.com/sbl-sdsc/mmtf-workshop-2018.git
-docker run -it --rm -v `pwd`:`pwd` -w `pwd` -p 8888:8888 stevetsa/mmtf-docker
+git clone https://github.com/sbl-sdsc/mmtf-genomics.git
+docker run -it --rm -v `pwd`:/home/jovyan/work -w `pwd` -p 8888:8888 stevetsa/mmtf-docker
 
-## Open a read-only Jupyter notebook stored in the container
-## docker run -it --rm -w /home/jovyan/work -p 8888:8888 stevetsa/mmtf-docker
 ```
-
 Point browser to http://localhost:8888/?token=abc........ (Last line of output from the previous command)
 
-
 ## End of Addition
-
-
-[![docker pulls](https://img.shields.io/docker/pulls/jupyter/base-notebook.svg)](https://hub.docker.com/r/jupyter/base-notebook/) [![docker stars](https://img.shields.io/docker/stars/jupyter/base-notebook.svg)](https://hub.docker.com/r/jupyter/base-notebook/) [![image metadata](https://images.microbadger.com/badges/image/jupyter/base-notebook.svg)](https://microbadger.com/images/jupyter/base-notebook "jupyter/base-notebook image metadata")
 
 # Base Jupyter Notebook Stack
 
